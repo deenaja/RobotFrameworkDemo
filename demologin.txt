@@ -3,12 +3,13 @@ Documentation     A test suite with a single test for valid login
 Library          Selenium2Library
 
 *** Variables ***
-#${SERVER}        localhost:7272
-#${BROWSER}        Firefox
+${SERVER}        localhost:7272
+${BROWSER}        Firefox
+${URL LOGIN}             http://${SERVER}/
  
 *** Test Cases ***
 Valid Case
-    Open Browser                http://localhost:7272/    Firefox
+    Open Browser                ${URL LOGIN}    ${BROWSER}
     input Text    username_field    demo
     Input Text    password_field    mode
     Click Button    login_button
