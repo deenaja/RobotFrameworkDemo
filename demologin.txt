@@ -1,0 +1,65 @@
+*** Settings ***
+Documentation     A test suite with a single test for valid login
+Library          Selenium2Library
+
+*** Variables ***
+#${SERVER}        localhost:7272
+#${BROWSER}        Firefox
+ 
+*** Test Cases ***
+Valid Case
+    Open Browser                http://localhost:7272/    Firefox
+    input Text    username_field    demo
+    Input Text    password_field    mode
+    Click Button    login_button
+    Title Should Be    Welcome Page
+    [Teardown]    Close Browser
+
+Empty Username and Password Case
+    Open Browser                http://localhost:7272/    Firefox
+    input Text    username_field     ${EMPTY}
+    input Text    password_field     ${EMPTY}
+    Click Button    login_button
+    Title Should Be    Error Page
+    [Teardown]    Close Browser
+
+Empty Username Case
+    Open Browser                http://localhost:7272/    Firefox
+    input Text    username_field      ${EMPTY}
+    input Text    password_field      mode
+    Click Button    login_button
+    Title Should Be    Error Page
+    [Teardown]    Close Browser
+
+Empty Password Case
+    Open Browser                http://localhost:7272/    Firefox
+    input Text    username_field     demo
+    input Text    password_field     ${EMPTY}
+    Click Button    login_button
+    Title Should Be    Error Page
+    [Teardown]    Close Browser
+
+wrong Username and Password Case
+    Open Browser                http://localhost:7272/    Firefox
+    input Text    username_field     mode
+    input Text    password_field     demo
+    Click Button    login_button
+    Title Should Be    Error Page
+    [Teardown]    Close Browser
+
+wrong Username Case
+    Open Browser                http://localhost:7272/    Firefox
+    input Text    username_field     dmeo
+    input Text    password_field     mode
+    Click Button    login_button
+    Title Should Be    Error Page
+    [Teardown]    Close Browser
+
+wrong Password Case
+    Open Browser                http://localhost:7272/    Firefox
+    input Text    username_field     demo
+    input Text    password_field     mdoe
+    Click Button    login_button
+    Title Should Be    Error Page
+    [Teardown]    Close Browser
+
