@@ -21,10 +21,26 @@ All Scenario Login Case
 
 *** Keyword ***
 Validate Login Page 
-    [Arguments]    ${username}    ${password}   ${title}
-    Open Browser                ${URL LOGIN}    ${BROWSER}
-    input Text    username_field     ${username}
-    input Text    password_field     ${password}
-    Click Button    login_button
-    Title Should Be    ${title}
-    [Teardown]    Close Browser
+    [Arguments]    ${ผู้ใช้งาน}    ${รหัสผ่าน}   ${ข้อความ}
+    เปิดหน้าล๊อคอิน
+    กรอกชื่อ                ${ผู้ใช้งาน} 
+    กรอกรหัสผ่าน            ${รหัสผ่าน}
+    กดปุ่มล๊อคอิน
+    จะพบข้อความบนไตเติล     ${ข้อความ}
+    [Teardown]            ปิดบราวเซอร์
+เปิดหน้าล๊อคอิน
+   Open Browser                ${URL LOGIN}    ${BROWSER}
+กรอกชื่อ
+   [Arguments]    ${ผู้ใช้งาน}     
+   input Text    username_field     ${ผู้ใช้งาน}
+กรอกรหัสผ่าน
+   [Arguments]    ${รหัสผ่าน}
+   input Text    password_field     ${รหัสผ่าน} 
+กดปุ่มล๊อคอิน
+   Click Button    login_button
+จะพบข้อความบนไตเติล
+   [Arguments]    ${ข้อความ}
+   Title Should Be    ${ข้อความ}
+ปิดบราวเซอร์
+   Close Browser
+
